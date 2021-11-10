@@ -1,5 +1,5 @@
-# continuity-preference-hgmm
-Code for research paper about time-variant linear dynamic model learning by continuity preference.
+# Continuity Preference in Hidden Gauss-Markov Models
+Code for research paper about time-variant linear dynamic model learning by continuity preference. Time-varying Kalman filter trained smartly.
 
 Requires python 3.6 - 3.8 because of the `sktime` dependency for datasets loading and downloading directly from the UCR/UEA database. When `sktime` migrates to higher version of python, this app can migrate as well.
 Moreover for the `timeseries_classifier_knn.py`, `numpy` of version `1.20` is required by `sktime`'s `numba` dependency.
