@@ -15,10 +15,10 @@ The root directory for running module is `cp-hgmm`. I suggest to add this direct
 Hint for VSCode: create `.env` in the repository root, inside it, put:
 `PYTHONPATH=./cp-hgmm`
 
-# Getting started
-For regression models, try running `cp-hgmm/models/lit_system_em.py`.
-For classification, try running `cp-hgmm/classifiers/timeseries_classifier_cphgmm.py`.
-For massive experiments on the effect of `kappa`, try running `cp-hgmm/experiments/experiment_pareto.py`.
-For visualization of the experiments results, run `cp-hgmm/experiments/visualization_pareto.ipynb` jupyter notebook.
+## Getting started
+* For regression models, try running `cp-hgmm/models/lit_system_em.py`.
+* For classification, try running `cp-hgmm/classifiers/timeseries_classifier_cphgmm.py`.
+* For massive experiments on the effect of `kappa`, try running `cp-hgmm/experiments/experiment_pareto.py`.
+  * For visualization of the experiments results, run `cp-hgmm/experiments/visualization_pareto.ipynb` jupyter notebook.
 
 Try different settings of `kappa` parameter in Continuity-preferring models.
