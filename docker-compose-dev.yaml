@@ -1,0 +1,25 @@
+services:
+  continuity-preference-hgmm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    image: continuity-preference-hgmm
+    restart: always
+    # env_file:
+    #   - ./secrets/.env
+    # ports:
+    #   - 5436:5432 
+    volumes:
+      - .:/app:delegated
+    networks:
+      - continuity-preference-hgmm-network
+    command: sleep infinity
+
+# volumes:
+#   data:
+#     driver: local
+
+networks:
+  continuity-preference-hgmm-network:
+    driver: bridge

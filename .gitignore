@@ -145,3 +145,4 @@ out/
 logs/*
 lightning_logs/*
 data/*
+secrets/*

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "continuity-preference-hgmm"
+version = "0.1.0"
+description = ""
+authors = ["Martin Ron <martinmartinron@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+torch = "^2.8.0"
+pytorch-lightning = "^2.5.4"
+tensorboard = "^2.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
