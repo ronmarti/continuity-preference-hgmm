@@ -23,7 +23,8 @@ RUN apt-get -y install git
 WORKDIR /app
 COPY cp-hgmm/pyproject.toml cp-hgmm/poetry.loc[k] ./
 # RUN poetry config virtualenvs.in-project true
-RUN poetry install --no-interaction --no-ansi --no-cache --no-root
+RUN poetry install --no-interaction --no-ansi --no-cache --no-root && \
+    ln -s "$(poetry env info --path)" /opt/cp-hgmm-venv
 ENTRYPOINT []
 CMD ["/bin/sh", "-c", "while sleep 1000; do :; done"]
 
