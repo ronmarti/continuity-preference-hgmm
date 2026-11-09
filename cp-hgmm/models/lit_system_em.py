@@ -111,15 +111,11 @@ class LitEMBase(LightningModule):
             mode='min',
         )
 
-        progress_bar_refresh_rate = 10
-        if not verbose:
-            progress_bar_refresh_rate = 0
-
         self.trainer = Trainer(
             max_epochs=max_epochs,
             callbacks=[checkpoint_callback,
                        early_stop_callback],
-            progress_bar_refresh_rate=progress_bar_refresh_rate
+            enable_progress_bar=verbose
         )
         self.trainer.fit(self, train_loader, val_loader)
         return self.trainer.checkpoint_callback.best_model_path

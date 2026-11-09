@@ -8,8 +8,7 @@ from sklearn.metrics import log_loss
 from sklearn.model_selection import StratifiedShuffleSplit
 from sktime.classification.distance_based import KNeighborsTimeSeriesClassifier
 
-from sktime.utils.data_io import load_from_tsfile_to_dataframe
-from sktime.datasets import load_UCR_UEA_dataset
+from sktime.datasets import load_UCR_UEA_dataset, load_from_tsfile_to_dataframe
 
 from models.utils.pysize import get_size
 

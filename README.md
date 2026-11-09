@@ -19,6 +19,12 @@ No host virtual environment or `.env` file is needed for this workflow.
 Run **Dev Containers: Rebuild Container** after changing the Poetry dependencies
 or Dockerfile.
 
+The development image includes `curl` and CA certificates so VS Code can download
+its CLI during session startup. If an older image fails with `curl: not found`,
+run **Dev Containers: Rebuild Container** before starting another session. If the
+Agents window cannot rebuild it, run `docker compose -f docker-compose-dev.yaml
+build continuity-preference-hgmm` from the repository root, then retry.
+
 The image includes CUDA, but this configuration does not request GPU access,
 matching the existing development Compose file. GPU access requires host NVIDIA
 Container Toolkit support and an explicit GPU reservation in Compose.

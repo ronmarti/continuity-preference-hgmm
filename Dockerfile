@@ -19,7 +19,9 @@ ENV PATH="/root/.local/bin:$PATH"
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc
 
 FROM base AS dev
-RUN apt-get -y install git
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY cp-hgmm/pyproject.toml cp-hgmm/poetry.loc[k] ./
 # RUN poetry config virtualenvs.in-project true

@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run HGMM model demo",
+      "type": "shell",
+      "command": "poetry run python models/lit_system_em.py",
+      "options": {
+        "cwd": "${workspaceFolder}/cp-hgmm"
+      },
+      "inAgents": true
+    }
+  ]
+}
