@@ -2,13 +2,14 @@
   "name": "Continuity Preference HGMM",
   "dockerComposeFile": "../docker-compose-dev.yaml",
   "service": "continuity-preference-hgmm",
-  "workspaceFolder": "/app",
+  "workspaceFolder": "/cp-gmm-app",
   "overrideCommand": false,
   "shutdownAction": "stopCompose",
   "remoteUser": "root",
+  "forwardPorts": [8765],
   "remoteEnv": {
     "PATH": "/opt/cp-hgmm-venv/bin:${containerEnv:PATH}",
-    "PYTHONPATH": "/app/cp-hgmm"
+    "PYTHONPATH": "/cp-gmm-app/cp-hgmm"
   },
   "customizations": {
     "vscode": {
@@ -20,9 +21,9 @@
       "settings": {
         "python.defaultInterpreterPath": "/opt/cp-hgmm-venv/bin/python",
         "python.analysis.extraPaths": [
-          "/app/cp-hgmm"
+          "/cp-gmm-app/cp-hgmm"
         ],
-        "terminal.integrated.cwd": "/app/cp-hgmm"
+        "terminal.integrated.cwd": "/cp-gmm-app/cp-hgmm"
       }
     }
   }

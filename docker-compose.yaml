@@ -3,14 +3,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: continuity-preference-hgmm
-    restart: always
-    # env_file:
-    #   - ./secrets/.env
+      target: prod
+    image: continuity-preference-hgmm-gui
+    restart: unless-stopped
     ports:
-      - 5436:5432
+      - 8765:8765
     volumes:
-      - data:/app
+      - data:/data
     networks:
       - continuity-preference-hgmm-network
 

@@ -11,7 +11,7 @@ services:
     # ports:
     #   - 5436:5432 
     volumes:
-      - .:/app:delegated
+      - .:/cp-gmm-app:delegated
     networks:
       - continuity-preference-hgmm-network
     command: sleep infinity

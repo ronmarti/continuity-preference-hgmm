@@ -22,7 +22,7 @@ FROM base AS dev
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git curl ca-certificates && \
     rm -rf /var/lib/apt/lists/*
-WORKDIR /app
+WORKDIR /cp-gmm-app
 COPY cp-hgmm/pyproject.toml cp-hgmm/poetry.loc[k] ./
 # RUN poetry config virtualenvs.in-project true
 RUN poetry install --no-interaction --no-ansi --no-cache --no-root && \
@@ -31,13 +31,18 @@ ENTRYPOINT []
 CMD ["/bin/sh", "-c", "while sleep 1000; do :; done"]
 
 FROM base AS prod
-RUN apt-get update
-RUN apt-get -y install git
-RUN apt-get clean
-WORKDIR /app/wastebin-mass-estimator
+WORKDIR /cp-gmm-app/cp-hgmm
 COPY cp-hgmm/pyproject.toml cp-hgmm/poetry.loc[k] ./
-RUN poetry install --without dev --no-interaction --no-ansi --no-cache
-COPY . .
-
-# Run cron on container startup
-CMD ["./start.sh"]
+RUN poetry install --no-interaction --no-ansi --no-cache --no-root && \
+    ln -s "$(poetry env info --path)" /opt/cp-hgmm-venv
+COPY cp-hgmm/ ./
+ENV PATH="/opt/cp-hgmm-venv/bin:$PATH" \
+    PYTHONPATH=/cp-gmm-app/cp-hgmm \
+    MPLBACKEND=Agg \
+    CPHGMM_RUNS_DIR=/data/runs
+VOLUME /data
+EXPOSE 8765
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8765/')" || exit 1
+# A single worker keeps one shared training job visible to every browser session.
+CMD ["solara", "run", "gui/app.py", "--host", "0.0.0.0", "--port", "8765", "--production", "--workers", "1", "--no-open"]

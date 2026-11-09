@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Web GUI (Solara server)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "solara",
+      "args": [
+        "run",
+        "gui/app.py",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8765",
+        "--no-open"
+      ],
+      "cwd": "${workspaceFolder}/cp-hgmm",
+      "python": "/opt/cp-hgmm-venv/bin/python",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/cp-hgmm"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "subProcess": true,
+      "serverReadyAction": {
+        "pattern": "Solara server is starting at https?://\\S+:(\\d+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "openExternally"
+      }
+    }
+  ]
+}

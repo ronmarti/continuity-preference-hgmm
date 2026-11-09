@@ -1,0 +1,12 @@
+.git
+.venv
+.vscode
+.devcontainer
+**/__pycache__
+**/.ipynb_checkpoints
+cp-hgmm/lightning_logs
+cp-hgmm/out
+cp-hgmm/runs
+cp-hgmm/logs
+cp-hgmm/data
+cp-hgmm/secrets
