@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "continuity-preference-hgmm"
+version = "0.1.0"
+description = ""
+authors = ["Martin Ron <martinmartinron@gmail.com>"]
+readme = "../README.md"
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+torch = "^2.8.0"
+pytorch-lightning = "^2.5.4"
+tensorboard = "^2.20.0"
+scipy = "<1.18"
+matplotlib = "^3.11.2"
+pandas = "<3.1"
+scikit-learn = "^1.9.1"
+sktime = "^1.2.0"
+pykalman = "<0.11"
+solara = "^1.66"
+
+
+[tool.poetry.group.dev.dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

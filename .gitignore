@@ -138,10 +138,11 @@ dmypy.json
 cython_debug/
 
 *.pdf
-.vscode/
-!.vscode/launch.json
 out/
 .out/
-logs/*
-lightning_logs/*
-data/*
+cp-hgmm/logs/*
+cp-hgmm/lightning_logs/*
+cp-hgmm/data/*
+cp-hgmm/secrets/*
+cp-hgmm/runs/*
+cp-hgmm/datasets/*

@@ -12,9 +12,9 @@ def psd_safe_cholesky(A, upper=False, out=None, jitter=None, max_tries=10):
         :attr:`A` (Tensor):
             The tensor to compute the Cholesky decomposition of
         :attr:`upper` (bool, optional):
-            See torch.cholesky
+            See :func:`torch.linalg.cholesky`
         :attr:`out` (Tensor, optional):
-            See torch.cholesky
+            See :func:`torch.linalg.cholesky`
         :attr:`jitter` (float, optional):
             The jitter to add to the diagonal of A in case A is only p.s.d. If omitted, chosen
             as 1e-6 (float) or 1e-8 (double)
@@ -22,7 +22,7 @@ def psd_safe_cholesky(A, upper=False, out=None, jitter=None, max_tries=10):
             Number of attempts (with successively increasing jitter) to make before raising an error.
     """
     try:
-        L = torch.cholesky(A, upper=upper, out=out)
+        L = torch.linalg.cholesky(A, upper=upper, out=out)
         return L
     except RuntimeError as e:
         isnan = torch.isnan(A)
@@ -40,7 +40,7 @@ def psd_safe_cholesky(A, upper=False, out=None, jitter=None, max_tries=10):
             Aprime.diagonal(dim1=-2, dim2=-1).add_(jitter_new - jitter_prev)
             jitter_prev = jitter_new
             try:
-                L = torch.cholesky(Aprime, upper=upper, out=out)
+                L = torch.linalg.cholesky(Aprime, upper=upper, out=out)
                 # warnings.warn(f"A not p.d., added jitter of {jitter_new:.1e} to the diagonal", NumericalWarning)
                 return L
             except RuntimeError:

@@ -92,15 +92,19 @@ class LitEMBase(LightningModule):
         self.log('val_nll', data_negloglikelihood.detach(), on_step=False, on_epoch=True, prog_bar=True, logger=True)
         return data_negloglikelihood
 
-    def fit(self, train_loader: DataLoader, val_loader: DataLoader, max_epochs=100, verbose=True):
+    def fit(self, train_loader: DataLoader, val_loader: DataLoader, max_epochs=100, verbose=True,
+            callbacks=None, default_root_dir=None, patience=3):
         """
         Fits a single class based on given data.
+        @param callbacks: optional extra Lightning callbacks.
+        @param default_root_dir: optional directory for logs and checkpoints.
+        @param patience: early stopping patience in epochs.
         @return best_model_path: path to the checkpoint with best performing model.
         """
         early_stop_callback = EarlyStopping(
             monitor='val_aug_loss',
             min_delta=0.000,
-            patience=3,
+            patience=patience,
             verbose=verbose,
             mode='min'
         )
@@ -111,15 +115,14 @@ class LitEMBase(LightningModule):
             mode='min',
         )
 
-        progress_bar_refresh_rate = 10
-        if not verbose:
-            progress_bar_refresh_rate = 0
-
         self.trainer = Trainer(
             max_epochs=max_epochs,
+            log_every_n_steps=1,
             callbacks=[checkpoint_callback,
-                       early_stop_callback],
-            progress_bar_refresh_rate=progress_bar_refresh_rate
+                       early_stop_callback,
+                       *(callbacks or [])],
+            enable_progress_bar=verbose,
+            default_root_dir=default_root_dir
         )
         self.trainer.fit(self, train_loader, val_loader)
         return self.trainer.checkpoint_callback.best_model_path

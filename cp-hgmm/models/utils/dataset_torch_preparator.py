@@ -8,8 +8,7 @@ import torch
 from torch.utils import data
 from torch.utils.data import TensorDataset, Dataset, DataLoader, Subset
 from torch.utils.data import random_split
-from sktime.datasets import load_UCR_UEA_dataset
-from sktime.utils.data_io import load_from_tsfile_to_dataframe
+from sktime.datasets import load_UCR_UEA_dataset, load_from_tsfile_to_dataframe
 from sktime.datatypes._panel._convert import from_nested_to_3d_numpy
 from pathlib import Path
 from sklearn.preprocessing import LabelEncoder

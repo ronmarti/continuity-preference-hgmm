@@ -1,0 +1,22 @@
+services:
+  continuity-preference-hgmm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    image: continuity-preference-hgmm-gui
+    restart: unless-stopped
+    ports:
+      - 8765:8765
+    volumes:
+      - data:/data
+    networks:
+      - continuity-preference-hgmm-network
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  continuity-preference-hgmm-network:
+    driver: bridge
