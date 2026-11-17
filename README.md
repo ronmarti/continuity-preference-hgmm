@@ -78,6 +78,8 @@ Container Toolkit support and an explicit GPU reservation in Compose.
 
 ## Web GUI (Solara)
 
+![Web GUI Showcase Image](image.png)
+
 A [Solara](https://solara.dev) web app in [cp-hgmm/gui](cp-hgmm/gui) lets you set up,
 start, stop and monitor CP-HGMM training and inspect the results:
 
